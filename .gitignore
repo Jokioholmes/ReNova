@@ -57,3 +57,6 @@ coverage/
 # Cache
 .cache/
 *.cache
+
+# Local development notes
+CLAUDE.md
