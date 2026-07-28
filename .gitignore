@@ -1,0 +1,59 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-lock.yaml
+.pnpm-debug.log
+dist/
+build/
+.next/
+out/
+
+# PHP / Composer
+vendor/
+composer.lock
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Laravel
+storage/
+bootstrap/cache/
+.env.testing
+
+# Environment
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# Temp
+tmp/
+temp/
+*.tmp
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Tests
+coverage/
+.nyc_output/
+
+# Cache
+.cache/
+*.cache
