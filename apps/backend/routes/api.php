@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\AuthController;
 
 /**
  * Health check
@@ -16,18 +17,21 @@ Route::get('/health', function () {
 });
 
 /**
+ * Routes d'authentification (publiques)
+ */
+Route::prefix('auth')->controller(AuthController::class)->group(function () {
+    Route::post('/register', 'register');   // POST   /api/auth/register
+    Route::post('/login', 'login');         // POST   /api/auth/login
+    Route::post('/logout', 'logout')->middleware('auth:sanctum');  // POST /api/auth/logout (protégé)
+    Route::post('/refresh', 'refresh')->middleware('auth:sanctum'); // POST /api/auth/refresh (protégé)
+    Route::get('/me', 'me')->middleware('auth:sanctum');           // GET  /api/auth/me (protégé)
+});
+
+/**
  * Routes protégées par Sanctum (authentification requise)
  */
 Route::middleware('auth:sanctum')->group(function () {
     
-    // Route utilisateur actuel
-    Route::get('/auth/me', function (Request $request) {
-        return response()->json([
-            'success' => true,
-            'data' => $request->user(),
-        ]);
-    });
-
     // Listings routes - CRUD complet
     Route::prefix('listings')->controller(ListingController::class)->group(function () {
         Route::post('/', 'store');                    // POST   /api/listings
